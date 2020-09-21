@@ -1,0 +1,50 @@
+package com.company;
+
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[] args) {
+        Scanner keyboard = new Scanner(System.in);
+        System.out.println("Enter text");
+        String input = keyboard.nextLine();
+        double letters = 0;
+        double words = 1;
+        double sentences = 0;
+
+
+        for (int i = 0; i < input.length(); i++) {
+            if (Character.isLetter(input.charAt(i)))
+
+                letters++;
+
+
+                if ((input.charAt(i) == ' ') && (input.charAt(i + 1) != ' '))
+                    words++;
+
+
+                if ((input.charAt(i) == '.') || (input.charAt(i) == '!') || input.charAt(i) == '?')
+                    sentences++;
+
+
+
+        }
+
+        double l = letters/words *100;
+        double s = sentences/words*100;
+
+        double index = 0.0588 * l - 0.296 * s - 15.8;
+
+
+        if (index < 1) {
+            System.out.println("Below Grade 1");
+        }
+        else if (index > 16) {
+            System.out.println("Grade 16+ ");
+        }
+        else {
+            System.out.println("Grade " + Math.round(index));
+
+        }
+    }
+}
